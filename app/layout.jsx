@@ -1,5 +1,6 @@
 import { Manrope, DM_Sans } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
+import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -64,8 +65,15 @@ export const metadata = {
     images: ["/brand/open-graph.png"],
   },
   icons: {
-    icon: "/brand/favicon.svg",
-    apple: "/brand/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/brand/pictoColor.png", sizes: "192x192", type: "image/png" },
+      { url: "/brand/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/brand/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
   },
   robots: {
     index: true,
@@ -84,6 +92,7 @@ export default function RootLayout({ children }) {
     <html lang="fr" className={`${manrope.variable} ${dmSans.variable}`}>
       <body>
         <SmoothScroll />
+        <ScrollProgress />
         {children}
       </body>
     </html>

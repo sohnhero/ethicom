@@ -74,10 +74,10 @@ export default function Header() {
             aria-label="ETHICOM, retour à l’accueil"
           >
             <Image
-              src="/brand/ETHICOM Globe Swoosh Logo.png"
+              src="/brand/logoColor.png"
               alt="ETHICOM"
-              width={260}
-              height={68}
+              width={240}
+              height={80}
               priority
               className="logo-img"
             />

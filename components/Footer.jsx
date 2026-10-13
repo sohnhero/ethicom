@@ -11,10 +11,10 @@ export default function Footer() {
         <div className="footer-identity">
           <a href="#accueil" aria-label="ETHICOM, retour en haut de page" className="footer-logo-link">
             <Image
-              src="/brand/ETHICOM Globe Swoosh Logo White.png"
+              src="/brand/logoBlanc.png"
               alt="ETHICOM"
               width={240}
-              height={64}
+              height={80}
               className="footer-logo"
             />
           </a>

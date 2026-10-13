@@ -1,55 +1,54 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
+/**
+ * Ultra-smooth, Apple/Linear-grade viewport reveal component.
+ * Tracks elements with IntersectionObserver as you scroll down the page.
+ */
 export default function Reveal({
   children,
   className = "",
   delay = 0,
-  variant = "up", // "up", "scale", "fade"
+  variant = "up", // "up" | "down" | "left" | "right" | "scale" | "fade" | "blur"
   as: Tag = "div",
+  threshold = 0.05,
+  rootMargin = "0px 0px -20px 0px",
   ...props
 }) {
   const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      element.classList.add("reveal--visible");
+      setIsVisible(true);
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          element.classList.add("reveal--visible");
+          setIsVisible(true);
           observer.unobserve(element);
         }
       },
       {
-        threshold: 0.12,
-        rootMargin: "0px 0px -40px 0px",
+        threshold,
+        rootMargin,
       }
     );
 
-    // If already in viewport or near top, show immediately
-    const rect = element.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.9) {
-      element.classList.add("reveal--visible");
-    } else {
-      element.classList.add("reveal--ready");
-    }
-
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [threshold, rootMargin]);
 
   return (
     <Tag
       ref={ref}
-      className={`reveal reveal--${variant} ${className}`}
+      className={`reveal reveal--${variant} ${isVisible ? "is-visible" : "is-hidden"} ${className}`}
       style={{ "--reveal-delay": `${delay}ms` }}
       {...props}
     >

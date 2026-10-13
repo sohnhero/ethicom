@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
+import Counter from "@/components/Counter";
 import {
   ArrowIcon,
   PlusIcon,
@@ -118,37 +119,39 @@ export default function HomePage() {
 
             {/* Copy Panel */}
             <div className="hero-copy-panel">
-              <div className="hero-topline">
+              <div className="hero-topline hero-animate-badge">
                 <span className="eyebrow-pill">
                   <span className="pill-dot" aria-hidden="true" />
                   CABINET D’EXPERTISE INSTITUTIONNELLE
                 </span>
               </div>
 
-              <h1 id="hero-title">
+              <h1 id="hero-title" className="hero-animate-title">
                 Des institutions<br />
                 <span>plus performantes.</span><br />
                 Un impact durable.
               </h1>
 
-              <p className="hero-intro">
+              <p className="hero-intro hero-animate-intro">
                 Nous accompagnons les institutions et les organisations dans la définition et la mise en œuvre de solutions stratégiques et opérationnelles adaptées à leurs réalités.
               </p>
 
-              <div className="hero-actions">
-                <a className="btn btn-lime" href="#expertises">
-                  <span>Découvrir nos expertises</span>
+              <div className="hero-actions hero-animate-actions">
+                <a className="btn btn-lime" href="#cabinet">
+                  <span>Découvrir le cabinet</span>
                   <ArrowIcon size={17} />
                 </a>
-                <a className="btn btn-outline" href="#cabinet">
-                  <span>Découvrir le cabinet</span>
+                <a className="btn btn-outline" href="#expertises">
+                  <span>Nos expertises</span>
                   <ArrowIcon diagonal size={17} />
                 </a>
               </div>
 
-              <div className="hero-bottom-line">
+              <div className="hero-bottom-line hero-animate-stats">
                 <div className="hero-stat">
-                  <strong>04</strong>
+                  <strong>
+                    <Counter value={4} />
+                  </strong>
                   <span>
                     domaines<br />
                     d’expertise
@@ -156,7 +159,9 @@ export default function HomePage() {
                 </div>
                 <div className="hero-stat-sep" aria-hidden="true" />
                 <div className="hero-stat">
-                  <strong>03</strong>
+                  <strong>
+                    <Counter value={3} />
+                  </strong>
                   <span>
                     piliers<br />
                     fondamentaux
@@ -189,6 +194,72 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* ================= ABOUT SECTION ================= */}
+        <section className="about-section section" id="cabinet" aria-labelledby="about-title">
+          <div className="container about-grid">
+            <Reveal className="about-images" variant="scale">
+              <div className="about-image-primary">
+                <Image
+                  src="/photos/diagnostic-institutionnel.webp"
+                  alt="Illustration de professionnels analysant des documents lors d’une réunion"
+                  fill
+                  className="cover-image"
+                  sizes="(max-width: 840px) 100vw, 46vw"
+                />
+                <div className="about-image-overlay" />
+              </div>
+              <div className="about-mini-card">
+                <div className="about-mini-header">
+                  <span className="mini-star" aria-hidden="true">✳</span>
+                  <span>UNE CONVICTION FONDATRICE</span>
+                </div>
+                <strong>L’éthique au service de la performance.</strong>
+                <p className="mini-card-text">
+                  Allier rigueur déontologique, haute technicité et résultats durables.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="about-copy">
+              <Reveal variant="blur">
+                <span className="eyebrow">
+                  <span className="eyebrow-mark" aria-hidden="true" /> QUI NOUS SOMMES
+                </span>
+                <h2 id="about-title">
+                  Un partenaire engagé aux côtés des <span>institutions et des organisations.</span>
+                </h2>
+                <p className="about-lead">
+                  ETHICOM est un cabinet d’expertise institutionnelle et organisationnelle qui construit des réponses concrètes aux défis de gouvernance, de stratégie et de transformation.
+                </p>
+                <p className="body-muted">
+                  Notre démarche articule conseil stratégique, production analytique et transmission continue de savoirs. Nous nous appuyons sur une équipe de haut niveau et un réseau pluridisciplinaire d’experts et de partenaires spécialisés.
+                </p>
+              </Reveal>
+
+              <Reveal delay={120} variant="up">
+                <div className="values-inline">
+                  {brand.pillars.map((value, idx) => (
+                    <div className="value-inline" key={value}>
+                      <div className="value-header">
+                        <span className="value-bullet-dot" aria-hidden="true" />
+                        <strong className="value-title">{value}</strong>
+                      </div>
+                      <p className="value-desc">{pillarDetails[idx]?.desc}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="about-actions">
+                  <a href="#approche" className="btn btn-dark">
+                    <span>Notre démarche méthodologique</span>
+                    <ArrowIcon diagonal size={16} />
+                  </a>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
         {/* ================= EXPERTISES SECTION ================= */}
         <section
           className="section services-section"
@@ -196,7 +267,7 @@ export default function HomePage() {
           aria-labelledby="services-title"
         >
           <div className="container">
-            <Reveal className="section-heading services-heading">
+            <Reveal className="section-heading services-heading" variant="blur">
               <div className="heading-group">
                 <span className="eyebrow">
                   <span className="eyebrow-mark" aria-hidden="true" /> NOS SAVOIR-FAIRE
@@ -215,7 +286,8 @@ export default function HomePage() {
               {expertiseContent.map((item, i) => (
                 <Reveal
                   key={item.label}
-                  delay={i * 90}
+                  delay={i * 100}
+                  variant="up"
                   className={`service-card ${item.style}`}
                 >
                   {item.visual && (
@@ -262,7 +334,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            <Reveal className="services-foot">
+            <Reveal className="services-foot" variant="up" delay={120}>
               <div className="services-foot-info">
                 <span className="foot-bullet" aria-hidden="true" />
                 <span>Des réponses sur mesure et adaptées à chaque contexte organisationnel.</span>
@@ -275,76 +347,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ================= ABOUT SECTION ================= */}
-        <section className="about-section section" id="cabinet" aria-labelledby="about-title">
-          <div className="container about-grid">
-            <Reveal className="about-images">
-              <div className="about-image-primary">
-                <Image
-                  src="/photos/diagnostic-institutionnel.webp"
-                  alt="Illustration de professionnels analysant des documents lors d’une réunion"
-                  fill
-                  className="cover-image"
-                  sizes="(max-width: 840px) 100vw, 46vw"
-                />
-                <div className="about-image-overlay" />
-              </div>
-              <div className="about-mini-card">
-                <div className="about-mini-header">
-                  <span className="mini-star" aria-hidden="true">✳</span>
-                  <span>UNE CONVICTION FONDATRICE</span>
-                </div>
-                <strong>L’éthique au service de la performance.</strong>
-                <p className="mini-card-text">
-                  Allier rigueur déontologique, haute technicité et résultats durables.
-                </p>
-              </div>
-            </Reveal>
-
-            <div className="about-copy">
-              <Reveal>
-                <span className="eyebrow">
-                  <span className="eyebrow-mark" aria-hidden="true" /> QUI NOUS SOMMES
-                </span>
-                <h2 id="about-title">
-                  Un partenaire engagé aux côtés des <span>institutions et des organisations.</span>
-                </h2>
-                <p className="about-lead">
-                  ETHICOM est un cabinet d’expertise institutionnelle et organisationnelle qui construit des réponses concrètes aux défis de gouvernance, de stratégie et de transformation.
-                </p>
-                <p className="body-muted">
-                  Notre démarche articule conseil stratégique, production analytique et transmission continue de savoirs. Nous nous appuyons sur une équipe de haut niveau et un réseau pluridisciplinaire d’experts et de partenaires spécialisés.
-                </p>
-              </Reveal>
-
-              <Reveal delay={120}>
-                <div className="values-inline">
-                  {brand.pillars.map((value, idx) => (
-                    <div className="value-inline" key={value}>
-                      <div className="value-header">
-                        <span className="value-bullet-dot" aria-hidden="true" />
-                        <strong className="value-title">{value}</strong>
-                      </div>
-                      <p className="value-desc">{pillarDetails[idx]?.desc}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="about-actions">
-                  <a href="#approche" className="btn btn-dark">
-                    <span>Notre démarche méthodologique</span>
-                    <ArrowIcon diagonal size={16} />
-                  </a>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
         {/* ================= METHOD SECTION ================= */}
         <section className="method-section section" id="approche" aria-labelledby="method-title">
           <div className="container">
-            <Reveal className="method-heading">
+            <Reveal className="method-heading" variant="blur">
               <div>
                 <span className="eyebrow eyebrow-light">
                   <span className="eyebrow-mark" aria-hidden="true" /> NOTRE APPROCHE
@@ -360,7 +366,7 @@ export default function HomePage() {
             </Reveal>
 
             <div className="method-grid">
-              <Reveal className="method-item" delay={0}>
+              <Reveal className="method-item" delay={0} variant="up">
                 <div className="method-top">
                   <span className="method-n">PHASE I • COMPRENDRE</span>
                   <span className="method-phase-badge">Diagnostic</span>
@@ -375,7 +381,7 @@ export default function HomePage() {
                 </div>
               </Reveal>
 
-              <Reveal className="method-item" delay={90}>
+              <Reveal className="method-item" delay={100} variant="up">
                 <div className="method-top">
                   <span className="method-n">PHASE II • STRUCTURER</span>
                   <span className="method-phase-badge">Cadrage</span>
@@ -390,7 +396,7 @@ export default function HomePage() {
                 </div>
               </Reveal>
 
-              <Reveal className="method-item" delay={180}>
+              <Reveal className="method-item" delay={200} variant="up">
                 <div className="method-top">
                   <span className="method-n">PHASE III • ACCOMPAGNER</span>
                   <span className="method-phase-badge">Pérennisation</span>
@@ -415,7 +421,7 @@ export default function HomePage() {
           aria-labelledby="detail-title"
         >
           <div className="container detail-grid">
-            <div className="detail-intro">
+            <Reveal className="detail-intro" variant="left">
               <span className="eyebrow">
                 <span className="eyebrow-mark" aria-hidden="true" /> DOMAINES D’INTERVENTION
               </span>
@@ -433,9 +439,9 @@ export default function HomePage() {
                   <ArrowIcon size={17} />
                 </a>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="detail-list">
+            <Reveal className="detail-list" variant="right" delay={80}>
               {expertises.map((exp, idx) => {
                 const isOpen = activeDomain === exp.id;
                 return (
@@ -500,7 +506,7 @@ export default function HomePage() {
                   </details>
                 );
               })}
-            </div>
+            </Reveal>
           </div>
         </section>
 
@@ -511,7 +517,7 @@ export default function HomePage() {
           aria-labelledby="training-title"
         >
           <div className="container training-grid">
-            <Reveal className="training-image">
+            <Reveal className="training-image" variant="scale">
               <Image
                 src="/photos/formation-capacites.webp"
                 alt="Illustration d'un séminaire de renforcement de capacités"
@@ -530,7 +536,7 @@ export default function HomePage() {
             </Reveal>
 
             <div className="training-copy">
-              <Reveal>
+              <Reveal variant="blur">
                 <div className="training-copy-head">
                   <span className="eyebrow">
                     <span className="eyebrow-mark" aria-hidden="true" /> FORMATION & CAPACITÉS
@@ -544,7 +550,7 @@ export default function HomePage() {
                 </div>
               </Reveal>
 
-              <div className="module-panel">
+              <Reveal className="module-panel" variant="up" delay={80}>
                 <div className="module-panel-head">
                   <div className="module-panel-title-group">
                     <span className="module-panel-icon" aria-hidden="true">✦</span>
@@ -574,14 +580,14 @@ export default function HomePage() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </Reveal>
 
-              <div className="training-actions">
+              <Reveal className="training-actions" variant="up" delay={140}>
                 <a href="#contact" className="btn btn-dark">
                   <span>Parlons de vos besoins en formation</span>
                   <ArrowIcon diagonal size={17} />
                 </a>
-              </div>
+              </Reveal>
             </div>
           </div>
         </section>
@@ -589,10 +595,10 @@ export default function HomePage() {
         {/* ================= FOUNDER SECTION ================= */}
         <section className="founder-section section" id="fondateur" aria-labelledby="founder-title">
           <div className="container founder-layout">
-            <Reveal className="founder-card">
+            <Reveal className="founder-card" variant="scale">
               <div className="founder-image-wrap">
                 <Image
-                  src="/photos/Professional Conference Portrait.png"
+                  src="/photos/djibril-safi-seck.webp"
                   alt="Dr Djibril Safi SECK - Fondateur et Directeur d'ETHICOM"
                   fill
                   className="cover-image"
@@ -608,7 +614,7 @@ export default function HomePage() {
             </Reveal>
 
             <div className="founder-copy">
-              <Reveal>
+              <Reveal variant="right" delay={80}>
                 <span className="eyebrow eyebrow-light">
                   <span className="eyebrow-mark" aria-hidden="true" /> LE FONDATEUR
                 </span>
@@ -632,7 +638,7 @@ export default function HomePage() {
         {/* ================= RESOURCES SECTION ================= */}
         <section className="resources-section section" id="ressources" aria-labelledby="resources-title">
           <div className="container">
-            <div className="section-heading resource-heading">
+            <Reveal className="section-heading resource-heading" variant="blur">
               <div>
                 <span className="eyebrow">
                   <span className="eyebrow-mark" aria-hidden="true" /> POUR ALLER PLUS LOIN
@@ -644,10 +650,10 @@ export default function HomePage() {
               <p>
                 Des espaces dédiés aux publications, références et partenaires du cabinet, à enrichir avec les contenus officiellement validés.
               </p>
-            </div>
+            </Reveal>
 
             <div className="resource-grid">
-              <div className="resource-card">
+              <Reveal className="resource-card" variant="up" delay={0}>
                 <div className="resource-card-top">
                   <span className="resource-category">PUBLICATIONS & ANALYSES</span>
                   <span className="resource-status-badge">Veille & Méthode</span>
@@ -660,9 +666,9 @@ export default function HomePage() {
                   <span>CONTENUS À VENIR</span>
                   <ArrowIcon diagonal size={15} />
                 </span>
-              </div>
+              </Reveal>
 
-              <div className="resource-card">
+              <Reveal className="resource-card" variant="up" delay={120}>
                 <div className="resource-card-top">
                   <span className="resource-category">RÉFÉRENCES & PARTENARIATS</span>
                   <span className="resource-status-badge">Partenariats</span>
@@ -675,7 +681,7 @@ export default function HomePage() {
                   <span>À COMPLÉTER</span>
                   <ArrowIcon diagonal size={15} />
                 </span>
-              </div>
+              </Reveal>
             </div>
           </div>
         </section>
@@ -683,7 +689,7 @@ export default function HomePage() {
         {/* ================= CONTACT SECTION ================= */}
         <section className="contact-section section" id="contact" aria-labelledby="contact-title">
           <div className="container contact-grid">
-            <div className="contact-content">
+            <Reveal className="contact-content" variant="left">
               <span className="eyebrow eyebrow-light">
                 <span className="eyebrow-mark" aria-hidden="true" /> TRAVAILLONS ENSEMBLE
               </span>
@@ -730,9 +736,11 @@ export default function HomePage() {
                 <span className="contact-promise-star" aria-hidden="true">✳</span>
                 <span className="contact-promise-text">{brand.slogan}</span>
               </div>
-            </div>
+            </Reveal>
 
-            <ContactForm />
+            <Reveal className="contact-form-wrapper" variant="right" delay={100}>
+              <ContactForm />
+            </Reveal>
           </div>
         </section>
       </main>
