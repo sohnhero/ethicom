@@ -39,7 +39,7 @@ const expertiseContent = [
     title: "Une vision qui devient action.",
     body: "Des orientations et des outils opérationnels pensés pour vos enjeux et vos parties prenantes.",
     style: "service-card--lime",
-    visual: "/photos/diagnostic-institutionnel.webp",
+    visual: "/photos/strategie-documents.webp",
     tags: ["Plans sectoriels", "Ingénierie sociale", "Redevabilité"],
   },
   {
@@ -57,7 +57,7 @@ const expertiseContent = [
     title: "Le savoir au service du progrès.",
     body: "Développer les compétences des cadres, agents et responsables grâce à des parcours ciblés.",
     style: "service-card--light",
-    visual: "/photos/formation-capacites.webp",
+    visual: "/photos/atelier-strategie.webp",
     tags: ["8 Modules", "Ateliers pratiques", "Sur-mesure"],
   },
 ];
@@ -200,8 +200,8 @@ export default function HomePage() {
             <Reveal className="about-images" variant="scale">
               <div className="about-image-primary">
                 <Image
-                  src="/photos/diagnostic-institutionnel.webp"
-                  alt="Illustration de professionnels analysant des documents lors d’une réunion"
+                  src="/photos/cabinet-conseil.webp"
+                  alt="Conseillers experts d'ETHICOM en séance de travail et consultation institutionnelle à Dakar"
                   fill
                   className="cover-image"
                   sizes="(max-width: 840px) 100vw, 46vw"
